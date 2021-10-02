@@ -37,11 +37,13 @@ body {
     grid-template-columns: 100px 500px 300px;
     grid-gap: 10px;
     justify-content: center;
+    grid-template-areas: 'picture parent about' ;
 }
 .picture {
     display: flex;
     flex-direction: column;
     grid-gap: 5px;
+    grid-area: picture;
 }
 .picture-parent {
     max-height: 515px;
@@ -49,6 +51,7 @@ body {
     display: flex;
     align-items: center;
     max-width: 500px;
+    grid-area: parent;
     justify-content: center;
 }
 .picture img {
@@ -63,6 +66,7 @@ body {
 .picture-parent img {
     position: absolute;
     width: 83%;
+    transition: 0.4s ease;
 }
 .name-price {
     display: flex;
@@ -76,6 +80,8 @@ body {
     display: flex;
     flex-direction: column;
     grid-gap: 25px;
+    grid-area: about;
+    justify-content: center;
 }
 .about h3 {
     font-weight: normal;
@@ -115,7 +121,7 @@ body {
     font-size: 16px;
     transition: border 0.4s ease;
 }
-.button-place button:active {
+.button-place button:hover {
     border: 2.5px solid #4582ec;
 }
 .size span {
@@ -124,12 +130,14 @@ body {
 .s-block {
     position: fixed;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
     display: none;
+    top: 0px;
+    left: 0px;
     transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 .block-c {
@@ -167,15 +175,18 @@ body {
 .basket-d {
     background-color: #fff;
     position: absolute;
-    border: 1px solid black;
     width: 300px;
     top: 40px;
     left: -250px;
     display: none;
+    padding: 15px;
     overflow: auto;
     border-radius: 5px;
     overflow: auto;
+    border: 1px solid lightgrey;
     max-height: 200px;
+    box-shadow: 0px 0px 5px lightgrey;
+    transition: all 0.4s ease;
 }
 a {
     text-decoration: none;
@@ -200,4 +211,32 @@ a {
 }
 .b-work {
     display: block;
+    transition: all 0.4s ease;
+}
+
+@media (max-width: 500px) {
+    .container{
+        grid-template-areas: 'parent parent' 'picture picture'  'about about';
+        grid-template-columns: none;
+    }
+    .picture-parent{
+        margin-top: 250px;
+        z-index: -1;
+    }
+    .picture{
+        display: flex;
+        flex-direction: row;
+        margin-top: 250px;
+        overflow: auto;
+    }
+    .picture img:hover{
+        border: 1px solid inherit;
+        transform: scale(0);
+    }
+    .picture img{
+        width: 100px;
+    }
+    .sizes-block{
+        justify-content: center;
+    }
 }
