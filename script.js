@@ -9,6 +9,7 @@ const basketNumber = document.querySelector('.s-p span');
 const basketB = document.querySelector('.basket-d a');
 const nameP = document.querySelector('.name-price h1');
 const bakset = document.querySelector('.s-p');
+const pictureOne = document.querySelector('.fP');
 let v = document.querySelector('.v');
 let basketD = document.querySelector('.basket-d');
 let none = null;
@@ -17,6 +18,12 @@ let one = 1;
 pictures.forEach((item) => {
     item.addEventListener('mouseover', () => {
         pictureP.src = item.src;
+    });
+});
+
+pictures.forEach((item) => {
+    item.addEventListener('mouseout', () => {
+        pictureP.src = pictureOne.src;
     });
 });
 
@@ -31,13 +38,17 @@ sizes.forEach((item) => {
     button.addEventListener('click', () => {
         if (sizeT.textContent == item.textContent) {
             basketBlock();
-            let basketNumbers = document.querySelectorAll('.basket-b');
-            basketNumber.innerHTML = basketNumbers.length;
+            B();
+            basketD.classList.add('b-work');
         } else if (sizeT.textContent == '') {
             blockS.classList.add('open');
         }
     });
 });
+
+let timeAnd = setInterval(() => {
+    basketD.classList.remove('b-work');
+}, 10000);
 
 butonB.addEventListener('click', () => {
     blockS.classList.remove('open');
@@ -61,4 +72,11 @@ function basketBlock() {
 
 bakset.addEventListener('click', () => {
     basketD.classList.toggle('b-work');
+    clearInterval(timeAnd);
 });
+
+function B() {
+    let basketNumbers = document.querySelectorAll('.basket-b');
+    basketNumber.innerHTML = basketNumbers.length;
+}
+
